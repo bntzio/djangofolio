@@ -1,13 +1,13 @@
 <!doctype html>
 <html lang="en">
   <head>
+    {% load staticfiles %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../../../favicon.ico">
+    <meta name="description" content="Cisco Ramon's Website Powered by Django">
+    <meta name="author" content="Cisco Ramon">
 
-    <title>Album example for Bootstrap</title>
+    <title>Cisco Ramon's Website</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -15,20 +15,18 @@
     <!-- Custom styles for this template -->
     <!-- <link href="album.css" rel="stylesheet"> -->
   </head>
-
   <body>
-
     <header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Cisco Ramon</a>
+        <a class="navbar-brand" href="{% url 'home' %}">Cisco Ramon</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav ml-auto">
-            <a class="nav-item nav-link" href="#">Twitter</a>
-            <a class="nav-item nav-link" href="#">Projects</a>
-            <a class="nav-item nav-link active" href="#">Blog</a>
+            <a class="nav-item nav-link active" href="{% url 'posts' %}">Blog</a>
+            <a class="nav-item nav-link" href="{% static 'resume.pdf' %}">Resume</a>
+            <a class="nav-item nav-link" href="https://twitter.com/vibecisco">Twitter</a>
           </div>
         </div>
       </nav>
@@ -42,8 +40,8 @@
         <h2>Latest Posts</h2>
         <hr />
         {% for post in posts.all %}
-        <a href="#"><h2 class="h4">{{ post.title }}</h2></a>
-        <span>{{ post.pretty_pub_date }}</span>
+        <a href="{%  url 'post' post.id %}"><h2 class="h4">{{ post.title }}</h2></a>
+        <span><i>{{ post.pretty_pub_date }}</i></span>
         <br />
         <img class="img-fluid" src="{{ post.image.url }}" width="180" />
         <br />
